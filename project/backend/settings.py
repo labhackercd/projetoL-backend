@@ -11,7 +11,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS',
                        cast=Csv(lambda x: x.strip().strip(',').strip()),
                        default='*')
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -114,3 +113,5 @@ STATIC_URL = config('STATIC_URL', default='/static/')
 GRAPHENE = {
     'SCHEMA': 'backend.schema.schema',
 }
+
+URL_API = config('URL_API', default='https://edemocracia.camara.leg.br/')

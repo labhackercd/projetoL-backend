@@ -1,8 +1,8 @@
 from collections import namedtuple
 from json import loads, dumps
 import requests
-
 from graphene import ObjectType, String, ID, Int, Field, DateTime, Date, List
+from settings import URL_API
 
 
 def _json_object_hook(d):
@@ -64,26 +64,26 @@ class Query(ObjectType):
 
 
 def api_call_user():
-    response = requests.get('https://edemocracia.camara.leg.br/wikilegis/api/v1/users/',
+    response = requests.get(URL_API + 'wikilegis/api/v1/users/',
                             headers={'Accept': 'application/json'})
     return response.json()
 
 
 def api_call_sugestions():
-    response = requests.get('https://edemocracia.camara.leg.br/wikilegis/api/v1/sugestions/',
+    response = requests.get(URL_API + 'wikilegis/api/v1/sugestions/',
                             headers={'Accept': 'application/json'})
     return response.json()
 
 
 def api_call_sugestion(id: Int):
-    url_format = 'https://edemocracia.camara.leg.br/wikilegis/api/v1/sugestions/?id={}'.format(
+    url_format = URL_API + 'wikilegis/api/v1/sugestions/?id={}'.format(
         id)
     response = requests.get(url_format, headers={'Accept': 'application/json'})
     return response.json()
 
 
 def api_call_sugestions_user(id: Int):
-    url_format = 'https://edemocracia.camara.leg.br/wikilegis/api/v1/sugestions/?author__id={}'.format(
+    url_format = URL_API + 'wikilegis/api/v1/sugestions/?author__id={}'.format(
         id)
     response = requests.get(url_format, headers={'Accept': 'application/json'})
     return response.json()
